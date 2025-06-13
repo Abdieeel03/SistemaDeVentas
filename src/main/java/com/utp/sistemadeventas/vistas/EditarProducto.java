@@ -125,12 +125,15 @@ public class EditarProducto extends javax.swing.JPanel {
         );
 
         btnActualizar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconGuardar.png"))); // NOI18N
         btnActualizar.setText("Actualizar Producto");
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-tacho-de-basura-25.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-cerrar-ventana-25.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

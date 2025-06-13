@@ -63,12 +63,16 @@ public class VtnLogin extends javax.swing.JFrame {
 
         jLabel6.setText("CONTRASEÑA");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Avatar_Container.png"))); // NOI18N
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Card_Header (1).jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         jPanel3.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 370, -1));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Card_Content.jpg"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 

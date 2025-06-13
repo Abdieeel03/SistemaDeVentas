@@ -118,6 +118,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-identification-documents-32.png"))); // NOI18N
         btnRegistrar.setText("Registrar Proveedor");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +126,7 @@ public class NuevoProveedor extends javax.swing.JPanel {
             }
         });
 
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-cerrar-ventana-25.png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

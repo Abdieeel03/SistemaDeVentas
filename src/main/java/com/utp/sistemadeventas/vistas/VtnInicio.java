@@ -93,8 +93,10 @@ public class VtnInicio extends javax.swing.JFrame {
         lblNbrEmpresa.setText("MINIMARKET WILSON");
 
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo4.png"))); // NOI18N
 
         btnGenerarVenta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnGenerarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconRegistrarVenta25x25.png"))); // NOI18N
         btnGenerarVenta.setText("Generar Venta");
         btnGenerarVenta.setBorder(new javax.swing.border.MatteBorder(null));
         btnGenerarVenta.setBorderPainted(false);
@@ -107,6 +109,7 @@ public class VtnInicio extends javax.swing.JFrame {
         });
 
         btnProductos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconProducto.png"))); // NOI18N
         btnProductos.setText("Productos");
         btnProductos.setBorderPainted(false);
         btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -118,6 +121,7 @@ public class VtnInicio extends javax.swing.JFrame {
         });
 
         btnProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconProveedor.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
         btnProveedores.setBorderPainted(false);
         btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -129,6 +133,7 @@ public class VtnInicio extends javax.swing.JFrame {
         });
 
         btnUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconUsuario.png"))); // NOI18N
         btnUsuarios.setText("Usuarios");
         btnUsuarios.setBorderPainted(false);
         btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -140,6 +145,7 @@ public class VtnInicio extends javax.swing.JFrame {
         });
 
         btnReporteVentas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnReporteVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconReporteVenta.png"))); // NOI18N
         btnReporteVentas.setText("Reporte de Ventas");
         btnReporteVentas.setBorderPainted(false);
         btnReporteVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -151,6 +157,7 @@ public class VtnInicio extends javax.swing.JFrame {
         });
 
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconLogout.png"))); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
         btnCerrarSesion.setBorderPainted(false);
         btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

@@ -32,6 +32,7 @@ public class PanelProveedor extends javax.swing.JPanel {
         pnlPantalla.setBackground(new java.awt.Color(255, 255, 255));
 
         btnNuevoProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnNuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconProveedor.png"))); // NOI18N
         btnNuevoProveedor.setText("Nuevo Proveedor");
         btnNuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -41,6 +42,7 @@ public class PanelProveedor extends javax.swing.JPanel {
         });
 
         btnBuscarProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-búsqueda-25.png"))); // NOI18N
         btnBuscarProveedor.setText("Buscar Proveedor");
         btnBuscarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarProveedor.addActionListener(new java.awt.event.ActionListener() {

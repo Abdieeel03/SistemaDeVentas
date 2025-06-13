@@ -56,6 +56,7 @@ public class BuscarProveedor extends javax.swing.JPanel {
             tableProveedor.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-cerrar-ventana-25.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

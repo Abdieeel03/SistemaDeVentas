@@ -247,6 +247,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnActualizar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons8-identification-documents-32.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Actualizar Proveedor"/>
           </Properties>
           <Events>
@@ -258,6 +261,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons8-cerrar-ventana-25.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
           <Events>
@@ -269,6 +275,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnEliminar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons8-tacho-de-basura-25.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
           <Events>

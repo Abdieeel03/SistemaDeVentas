@@ -238,6 +238,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnRegistrar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons8-identification-documents-32.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Registrar Proveedor"/>
           </Properties>
           <Events>
@@ -249,6 +252,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons8-cerrar-ventana-25.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
           <Events>

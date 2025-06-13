@@ -123,6 +123,7 @@ public class EditarProveedor extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-identification-documents-32.png"))); // NOI18N
         btnActualizar.setText("Actualizar Proveedor");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +131,7 @@ public class EditarProveedor extends javax.swing.JPanel {
             }
         });
 
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-cerrar-ventana-25.png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +139,7 @@ public class EditarProveedor extends javax.swing.JPanel {
             }
         });
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-tacho-de-basura-25.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

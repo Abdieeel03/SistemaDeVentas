@@ -26,6 +26,7 @@ public class PanelUsuario extends javax.swing.JPanel {
         pnlPantalla.setBackground(new java.awt.Color(255, 255, 255));
 
         btnNuevoUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnNuevoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconUsuario.png"))); // NOI18N
         btnNuevoUsuario.setText("Nuevo Usuario");
         btnNuevoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -35,6 +36,7 @@ public class PanelUsuario extends javax.swing.JPanel {
         });
 
         btnBuscarUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-búsqueda-25.png"))); // NOI18N
         btnBuscarUsuario.setText("Buscar Usuario");
         btnBuscarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {

@@ -126,9 +126,11 @@ public class NuevoProducto extends javax.swing.JPanel {
         );
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconGuardar.png"))); // NOI18N
         btnRegistrar.setText("Registrar Producto");
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-cerrar-ventana-25.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
