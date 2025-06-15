@@ -4,8 +4,11 @@ import java.util.List;
 
 public class Proveedor {
 
-    private String idProveedor, nombre, direccion, telefono, paginaWeb;
-    private List<Producto> productos;
+    private String idProveedor;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String paginaWeb;
 
     public Proveedor() {
     }
@@ -48,14 +51,6 @@ public class Proveedor {
 
     public void setPaginaWeb(String paginaWeb) {
         this.paginaWeb = paginaWeb;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 
 }

@@ -1,8 +1,6 @@
 package com.utp.sistemadeventas.modelos;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Venta {
 
@@ -11,17 +9,17 @@ public class Venta {
     private double total;
     private int idMedioPago;
     private String idCliente;
-    private MedioPago medioPago;
-    private Cliente cliente;
-    private List<DetalleVenta> detalleVentas;
 
     public Venta() {
-        this.detalleVentas = new ArrayList<>();
+
     }
 
-    public Venta(DetalleVenta detalleVenta) {
-        this.detalleVentas.add(detalleVenta);
-        detalleVenta.setVenta(this);
+    public Venta(int id_venta, Date fechaVenta, double total, int idMedioPago, String idCliente) {
+        this.id_venta = id_venta;
+        this.fechaVenta = fechaVenta;
+        this.total = total;
+        this.idMedioPago = idMedioPago;
+        this.idCliente = idCliente;
     }
 
     public int getId_venta() {
@@ -62,30 +60,6 @@ public class Venta {
 
     public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
-    }
-
-    public MedioPago getMedioPago() {
-        return medioPago;
-    }
-
-    public void setMedioPago(MedioPago medioPago) {
-        this.medioPago = medioPago;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public List<DetalleVenta> getDetalleVentas() {
-        return detalleVentas;
-    }
-
-    public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
-        this.detalleVentas = detalleVentas;
     }
 
 }

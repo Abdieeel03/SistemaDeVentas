@@ -6,7 +6,6 @@ public class DetalleVenta {
     private int cantidad;
     private double precioUnitario;
     private double subtotal;
-    private Venta venta;
 
     public DetalleVenta() {
     }
@@ -57,14 +56,6 @@ public class DetalleVenta {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
-    }
-
-    public Venta getVenta() {
-        return venta;
-    }
-
-    public void setVenta(Venta venta) {
-        this.venta = venta;
     }
 
 }

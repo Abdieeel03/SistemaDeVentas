@@ -6,7 +6,6 @@ public class Categoria {
 
     private int id_categoria;
     private String nombre;
-    private List<Producto> productos;
 
     public Categoria() {
     }
@@ -25,14 +24,6 @@ public class Categoria {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 
 }

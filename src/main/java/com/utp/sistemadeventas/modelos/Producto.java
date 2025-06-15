@@ -1,16 +1,15 @@
 package com.utp.sistemadeventas.modelos;
 
-import java.util.List;
 
 public class Producto {
 
-    private int idProducto, idCategoria;
-    private String nombre, idProveedor;
-    private double precioCompra, precioVenta;
+    private int idProducto;
+    private int idCategoria;
+    private String nombre;
+    private String idProveedor;
+    private double precioCompra;
+    private double precioVenta;
     private int stock;
-    private Categoria categoria;
-    private Proveedor proveedor;
-    private List<DetalleVenta> detalleVentas;
 
     public Producto() {
     }
@@ -69,30 +68,6 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public List<DetalleVenta> getDetalleVentas() {
-        return detalleVentas;
-    }
-
-    public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
-        this.detalleVentas = detalleVentas;
     }
 
 }

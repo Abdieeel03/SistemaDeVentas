@@ -6,7 +6,6 @@ public class MedioPago {
 
     private String idMedioPago;
     private String nombre;
-    private List<Venta> ventas;
 
     public MedioPago() {
     }
@@ -25,14 +24,6 @@ public class MedioPago {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<Venta> getVentas() {
-        return ventas;
-    }
-
-    public void setVentas(List<Venta> ventas) {
-        this.ventas = ventas;
     }
 
 }
