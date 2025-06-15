@@ -14,4 +14,6 @@ public interface ArregloDinamico<T> {
     void ampliarArreglo();
 
     boolean estaLleno();
+    
+    void set(int index, T elemento);
 }

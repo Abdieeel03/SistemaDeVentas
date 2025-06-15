@@ -78,10 +78,43 @@ public class Arreglo<T> implements Modificable<T>, Accesible<T>, ArregloDinamico
         return cantidadElementos == capacidad;
     }
 
+    @Override
+    public void set(int index, T elemento) {
+        if (index >= 0 && index < cantidadElementos) {
+            arreglo[index] = elemento;
+        } else {
+            throw new IndexOutOfBoundsException("Índice fuera de rango.");
+        }
+    }
+
     public void listar() {
         for (int i = 0; i < cantidadElementos; i++) {
             System.out.println(arreglo[i]);
         }
+    }
+
+    public Object[] getArreglo() {
+        return arreglo;
+    }
+
+    public void setArreglo(Object[] arreglo) {
+        this.arreglo = arreglo;
+    }
+
+    public int getCantidadElementos() {
+        return cantidadElementos;
+    }
+
+    public void setCantidadElementos(int cantidadElementos) {
+        this.cantidadElementos = cantidadElementos;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
     }
 
 }

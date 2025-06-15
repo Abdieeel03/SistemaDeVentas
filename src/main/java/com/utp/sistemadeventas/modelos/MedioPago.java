@@ -1,13 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.utp.sistemadeventas.modelos;
 
-/**
- *
- * @author marce
- */
+import java.util.List;
+
 public class MedioPago {
-    
+
+    private String idMedioPago;
+    private String nombre;
+    private List<Venta> ventas;
+
+    public MedioPago() {
+    }
+
+    public String getIdMedioPago() {
+        return idMedioPago;
+    }
+
+    public void setIdMedioPago(String idMedioPago) {
+        this.idMedioPago = idMedioPago;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(List<Venta> ventas) {
+        this.ventas = ventas;
+    }
+
 }
