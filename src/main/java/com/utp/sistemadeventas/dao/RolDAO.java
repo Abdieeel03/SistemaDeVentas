@@ -19,23 +19,24 @@ import java.util.List;
  * @author Abdiel
  */
 public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
-    
+
     private Arreglo<Rol> arregloRol;
     private final int CAPACIDAD_INICIAL = 3;
     private final String NAMEFILE = "roles.csv";
     private final String FORMAT = "%s,%s\n";
-    private int indice = 1;
+    private int indice;
     private File archivo;
-    
+
     public RolDAO() {
         arregloRol = new Arreglo<>(CAPACIDAD_INICIAL);
         archivo = new File(NAMEFILE);
         if (!archivo.exists()) {
             crearArchivo();
         }
+        indice = obtenerUltimoIndice();
         leerArchivo();
     }
-    
+
     @Override
     public void agregar(Rol entidad) {
         entidad.setIdRol(indice);
@@ -43,7 +44,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
         guardarEnArchivo(entidad);
         indice++;
     }
-    
+
     @Override
     public void eliminar(String id) {
         Rol rol = buscarPorId(id);
@@ -52,7 +53,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             eliminarDeArchivo(rol);
         }
     }
-    
+
     @Override
     public void actualizar(Rol entidad) {
         for (int i = 0; i < arregloRol.tamanio(); i++) {
@@ -64,7 +65,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             }
         }
     }
-    
+
     @Override
     public Rol buscarPorId(String id) {
         int idBuscado = Integer.parseInt(id);
@@ -76,7 +77,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
         }
         return null;
     }
-    
+
     @Override
     public List<Rol> listar() {
         List<Rol> lista = new ArrayList<>();
@@ -85,7 +86,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
         }
         return lista;
     }
-    
+
     @Override
     public void crearArchivo() {
         try {
@@ -94,7 +95,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             System.err.println("Error al crear el archivo de roles: " + e.getMessage());
         }
     }
-    
+
     @Override
     public void guardarEnArchivo(Rol elemento) {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo, true)))) {
@@ -103,12 +104,12 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             System.err.println("Error al guardar en archivo: " + e.getMessage());
         }
     }
-    
+
     @Override
     public void eliminarDeArchivo(Rol elemento) {
         List<Rol> listaActual = listar();
         listaActual.removeIf(r -> r.getIdRol() == elemento.getIdRol());
-        
+
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (Rol r : listaActual) {
                 writer.printf(FORMAT, r.getIdRol(), r.getNombre());
@@ -117,7 +118,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             System.err.println("Error al eliminar del archivo: " + e.getMessage());
         }
     }
-    
+
     @Override
     public void actualizarDeArchivo(Rol elemento) {
         List<Rol> listaActual = listar();
@@ -127,7 +128,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
                 break;
             }
         }
-        
+
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (Rol r : listaActual) {
                 writer.printf(FORMAT, r.getIdRol(), r.getNombre());
@@ -136,7 +137,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             System.err.println("Error al actualizar el archivo: " + e.getMessage());
         }
     }
-    
+
     @Override
     public void leerArchivo() {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
@@ -150,7 +151,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
                     int idRol = Integer.parseInt(partes[0].trim());
                     String nombreRol = partes[1].trim();
                     arregloRol.agregar(new Rol(idRol, nombreRol));
-                    
+
                     if (idRol >= indice) {
                         indice = idRol + 1;
                     }
@@ -160,5 +161,27 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             System.err.println("Error al leer archivo: " + e.getMessage());
         }
     }
-    
+
+    public int obtenerUltimoIndice() {
+        int ultimoIndice = 1;
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                if (linea.trim().isEmpty()) {
+                    continue;
+                }
+                String[] partes = linea.split(",");
+                if (partes.length >= 1) {
+                    int idActual = Integer.parseInt(partes[0].trim());
+                    if (idActual > ultimoIndice) {
+                        ultimoIndice = idActual;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer archivo para obtener último índice: " + e.getMessage());
+        }
+        return ultimoIndice;
+    }
+
 }

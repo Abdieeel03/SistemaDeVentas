@@ -1,20 +1,23 @@
 package com.utp.sistemadeventas.modelos;
 
-import java.util.List;
-
 public class MedioPago {
 
-    private String idMedioPago;
+    private int idMedioPago;
     private String nombre;
 
     public MedioPago() {
     }
 
-    public String getIdMedioPago() {
+    public MedioPago(int idMedioPago, String nombre) {
+        this.idMedioPago = idMedioPago;
+        this.nombre = nombre;
+    }
+
+    public int getIdMedioPago() {
         return idMedioPago;
     }
 
-    public void setIdMedioPago(String idMedioPago) {
+    public void setIdMedioPago(int idMedioPago) {
         this.idMedioPago = idMedioPago;
     }
 

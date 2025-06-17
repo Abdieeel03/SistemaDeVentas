@@ -20,4 +20,6 @@ public interface Persistible<T> {
     void actualizarDeArchivo(T elemento);
 
     void leerArchivo();
+    
+    int obtenerUltimoIndice();
 }
