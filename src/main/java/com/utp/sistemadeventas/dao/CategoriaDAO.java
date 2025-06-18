@@ -29,7 +29,7 @@ public final class CategoriaDAO implements CRUD<Categoria>, Persistible<Categori
     private final String FOLDER = "datos";
     private final String PATHFILE = FOLDER + File.separator + NAMEFILE;
     private final String FORMAT = "%s,%s\n";
-    private int indice = 1;
+    private int indice;
     private final File archivo;
 
     public CategoriaDAO() {
@@ -187,7 +187,7 @@ public final class CategoriaDAO implements CRUD<Categoria>, Persistible<Categori
 
     @Override
     public int obtenerUltimoIndice() {
-        int ultimoIndice = 1;
+        int ultimoIndice = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = reader.readLine()) != null) {

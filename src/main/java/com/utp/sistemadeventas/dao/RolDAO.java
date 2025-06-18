@@ -188,7 +188,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
 
     @Override
     public int obtenerUltimoIndice() {
-        int ultimoIndice = 1;
+        int ultimoIndice = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = reader.readLine()) != null) {

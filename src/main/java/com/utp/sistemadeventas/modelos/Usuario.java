@@ -2,27 +2,31 @@ package com.utp.sistemadeventas.modelos;
 
 public class Usuario {
 
-    private String nombre, usuario, contraseña, descripcion;
-    private int idRol, idUsuario;
-    private Rol rol;
+    private String idUsuario;
+    private String nombre;
+    private String usuario;
+    private String contraseña;
+    private String descripcion;
+    private int idRol;
 
-    public Usuario(String nombre, String usuario, String contraseña, String descripcion, int idRol, int idUsuario) {
+    // Constructor
+    public Usuario(String idUsuario, String nombre, String usuario, String contraseña, String descripcion, int idRol) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.descripcion = descripcion;
         this.idRol = idRol;
-        this.idUsuario = idUsuario;
     }
 
     public Usuario() {
     }
 
-    public int getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -64,14 +68,6 @@ public class Usuario {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 
 }
