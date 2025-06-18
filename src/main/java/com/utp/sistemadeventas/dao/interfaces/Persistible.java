@@ -11,7 +11,7 @@ package com.utp.sistemadeventas.dao.interfaces;
  */
 public interface Persistible<T> {
 
-    void crearArchivo();
+    void crearArchivo(String recursoNombre);
 
     void guardarEnArchivo(T elemento);
 

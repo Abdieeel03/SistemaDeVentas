@@ -1,7 +1,5 @@
 package com.utp.sistemadeventas.modelos;
 
-import java.util.List;
-
 public class Proveedor {
 
     private String idProveedor;
@@ -11,6 +9,14 @@ public class Proveedor {
     private String paginaWeb;
 
     public Proveedor() {
+    }
+
+    public Proveedor(String idProveedor, String nombre, String direccion, String telefono, String paginaWeb) {
+        this.idProveedor = idProveedor;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.paginaWeb = paginaWeb;
     }
 
     public String getIdProveedor() {
@@ -51,6 +57,11 @@ public class Proveedor {
 
     public void setPaginaWeb(String paginaWeb) {
         this.paginaWeb = paginaWeb;
+    }
+
+    @Override
+    public String toString() {
+        return "Proveedor{" + "idProveedor=" + idProveedor + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", paginaWeb=" + paginaWeb + '}';
     }
 
 }

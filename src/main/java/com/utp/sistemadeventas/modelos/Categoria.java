@@ -1,13 +1,16 @@
 package com.utp.sistemadeventas.modelos;
 
-import java.util.List;
-
 public class Categoria {
 
     private int id_categoria;
     private String nombre;
 
     public Categoria() {
+    }
+
+    public Categoria(int id_categoria, String nombre) {
+        this.id_categoria = id_categoria;
+        this.nombre = nombre;
     }
 
     public int getIdCategoria() {

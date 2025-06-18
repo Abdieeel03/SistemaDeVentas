@@ -1,6 +1,5 @@
 package com.utp.sistemadeventas.modelos;
 
-
 public class Producto {
 
     private int idProducto;
@@ -12,6 +11,16 @@ public class Producto {
     private int stock;
 
     public Producto() {
+    }
+
+    public Producto(int idProducto, int idCategoria, String nombre, String idProveedor, double precioCompra, double precioVenta, int stock) {
+        this.idProducto = idProducto;
+        this.idCategoria = idCategoria;
+        this.nombre = nombre;
+        this.idProveedor = idProveedor;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.stock = stock;
     }
 
     public int getIdProducto() {

@@ -10,6 +10,15 @@ public class DetalleVenta {
     public DetalleVenta() {
     }
 
+    public DetalleVenta(int idDetalle, int idVenta, int idProducto, int cantidad, double precioUnitario, double subtotal) {
+        this.idDetalle = idDetalle;
+        this.idVenta = idVenta;
+        this.idProducto = idProducto;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+        this.subtotal = subtotal;
+    }
+
     public int getIdDetalle() {
         return idDetalle;
     }

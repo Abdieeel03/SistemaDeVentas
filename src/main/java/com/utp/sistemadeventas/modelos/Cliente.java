@@ -1,12 +1,15 @@
 package com.utp.sistemadeventas.modelos;
 
-import java.util.List;
-
 public class Cliente {
 
     private String id_cliente, nombre;
 
     public Cliente() {
+    }
+
+    public Cliente(String id_cliente, String nombre) {
+        this.id_cliente = id_cliente;
+        this.nombre = nombre;
     }
 
     public String getId_cliente() {

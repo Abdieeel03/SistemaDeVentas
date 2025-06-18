@@ -6,6 +6,15 @@ public class Usuario {
     private int idRol, idUsuario;
     private Rol rol;
 
+    public Usuario(String nombre, String usuario, String contraseña, String descripcion, int idRol, int idUsuario) {
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.descripcion = descripcion;
+        this.idRol = idRol;
+        this.idUsuario = idUsuario;
+    }
+
     public Usuario() {
     }
 

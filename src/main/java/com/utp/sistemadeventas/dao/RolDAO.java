@@ -7,9 +7,12 @@ import com.utp.sistemadeventas.estructuras.Arreglo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,20 +23,27 @@ import java.util.List;
  */
 public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
 
-    private Arreglo<Rol> arregloRol;
+    private final Arreglo<Rol> arregloRol;
     private final int CAPACIDAD_INICIAL = 3;
     private final String NAMEFILE = "roles.csv";
+    private final String FOLDER = "datos";
+    private final String PATHFILE = FOLDER + File.separator + NAMEFILE;
     private final String FORMAT = "%s,%s\n";
     private int indice;
-    private File archivo;
+    private final File archivo;
 
     public RolDAO() {
         arregloRol = new Arreglo<>(CAPACIDAD_INICIAL);
-        archivo = new File(NAMEFILE);
-        if (!archivo.exists()) {
-            crearArchivo();
+
+        File carpeta = new File(FOLDER);
+        if (!carpeta.exists()) {
+            carpeta.mkdirs();
         }
-        indice = obtenerUltimoIndice();
+
+        archivo = new File(PATHFILE);
+        crearArchivo(NAMEFILE);
+
+        indice = obtenerUltimoIndice() + 1;
         leerArchivo();
     }
 
@@ -88,11 +98,25 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
     }
 
     @Override
-    public void crearArchivo() {
-        try {
-            archivo.createNewFile(); // crea el archivo si no existe
-        } catch (Exception e) {
-            System.err.println("Error al crear el archivo de roles: " + e.getMessage());
+    public void crearArchivo(String recursoNombre) {
+        if (!archivo.exists()) {
+            try (InputStream in = getClass().getResourceAsStream("/recursos/" + recursoNombre); OutputStream out = new FileOutputStream(archivo)) {
+
+                if (in == null) {
+                    System.err.println("No se encontró el recurso: " + recursoNombre);
+                    archivo.createNewFile();
+                    return;
+                }
+
+                byte[] buffer = new byte[1024];
+                int bytesLeidos;
+                while ((bytesLeidos = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesLeidos);
+                }
+
+            } catch (IOException e) {
+                System.err.println("Error al copiar el recurso '" + recursoNombre + "': " + e.getMessage());
+            }
         }
     }
 
@@ -162,6 +186,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
         }
     }
 
+    @Override
     public int obtenerUltimoIndice() {
         int ultimoIndice = 1;
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
