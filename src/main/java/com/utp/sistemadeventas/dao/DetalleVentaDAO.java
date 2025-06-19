@@ -11,7 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,7 +52,7 @@ public final class DetalleVentaDAO implements CRUD<DetalleVenta>, Persistible<De
         DetalleVenta detalle = buscarPorId(id);
         if (detalle != null) {
             lista.remove(detalle);
-            eliminarDeArchivo(detalle);
+            eliminarDeArchivo();
         }
     }
 
@@ -62,7 +61,7 @@ public final class DetalleVentaDAO implements CRUD<DetalleVenta>, Persistible<De
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getIdDetalle() == entidad.getIdDetalle()) {
                 lista.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -116,7 +115,7 @@ public final class DetalleVentaDAO implements CRUD<DetalleVenta>, Persistible<De
     }
 
     @Override
-    public void eliminarDeArchivo(DetalleVenta elemento) {
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (DetalleVenta d : lista) {
                 writer.printf(Locale.US, FORMAT,
@@ -134,7 +133,7 @@ public final class DetalleVentaDAO implements CRUD<DetalleVenta>, Persistible<De
     }
 
     @Override
-    public void actualizarDeArchivo(DetalleVenta elemento) {
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (DetalleVenta d : lista) {
                 writer.printf(Locale.US, FORMAT,

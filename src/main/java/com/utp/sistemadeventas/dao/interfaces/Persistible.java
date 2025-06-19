@@ -15,9 +15,9 @@ public interface Persistible<T> {
 
     void guardarEnArchivo(T elemento);
 
-    void eliminarDeArchivo(T elemento);
+    void eliminarDeArchivo();
 
-    void actualizarDeArchivo(T elemento);
+    void actualizarDeArchivo();
 
     void leerArchivo();
     

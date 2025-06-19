@@ -60,7 +60,7 @@ public final class MedioPagoDAO implements CRUD<MedioPago>, Persistible<MedioPag
         MedioPago mp = buscarPorId(id);
         if (mp != null) {
             arregloMedioPago.eliminar(mp);
-            eliminarDeArchivo(mp);
+            eliminarDeArchivo();
         }
     }
 
@@ -70,7 +70,7 @@ public final class MedioPagoDAO implements CRUD<MedioPago>, Persistible<MedioPag
             MedioPago actual = arregloMedioPago.obtener(i);
             if (actual.getIdMedioPago() == entidad.getIdMedioPago()) {
                 arregloMedioPago.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -130,12 +130,10 @@ public final class MedioPagoDAO implements CRUD<MedioPago>, Persistible<MedioPag
     }
 
     @Override
-    public void eliminarDeArchivo(MedioPago elemento) {
-        List<MedioPago> listaActual = listar();
-        listaActual.removeIf(r -> r.getIdMedioPago() == elemento.getIdMedioPago());
-
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (MedioPago mp : listaActual) {
+            for (int i = 0; i < arregloMedioPago.tamanio(); i++) {
+                MedioPago mp = arregloMedioPago.obtener(i);
                 writer.printf(FORMAT, mp.getIdMedioPago(), mp.getNombre());
             }
         } catch (IOException e) {
@@ -144,17 +142,10 @@ public final class MedioPagoDAO implements CRUD<MedioPago>, Persistible<MedioPag
     }
 
     @Override
-    public void actualizarDeArchivo(MedioPago elemento) {
-        List<MedioPago> listaActual = listar();
-        for (int i = 0; i < listaActual.size(); i++) {
-            if (listaActual.get(i).getIdMedioPago() == elemento.getIdMedioPago()) {
-                listaActual.set(i, elemento);
-                break;
-            }
-        }
-
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (MedioPago mp : listaActual) {
+            for (int i = 0; i < arregloMedioPago.tamanio(); i++) {
+                MedioPago mp = arregloMedioPago.obtener(i);
                 writer.printf(FORMAT, mp.getIdMedioPago(), mp.getNombre());
             }
         } catch (IOException e) {

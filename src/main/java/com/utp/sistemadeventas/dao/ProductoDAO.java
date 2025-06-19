@@ -2,9 +2,7 @@ package com.utp.sistemadeventas.dao;
 
 import com.utp.sistemadeventas.dao.interfaces.CRUD;
 import com.utp.sistemadeventas.dao.interfaces.Persistible;
-import com.utp.sistemadeventas.modelos.Categoria;
 import com.utp.sistemadeventas.modelos.Producto;
-import com.utp.sistemadeventas.modelos.Proveedor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -57,7 +55,7 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
         Producto p = buscarPorId(id);
         if (p != null) {
             lista.remove(p);
-            eliminarDeArchivo(p);
+            eliminarDeArchivo();
         }
     }
 
@@ -66,7 +64,7 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getIdProducto() == entidad.getIdProducto()) {
                 lista.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -125,12 +123,9 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
     }
 
     @Override
-    public void eliminarDeArchivo(Producto p) {
-        List<Producto> listaActual = listar();
-        listaActual.removeIf(prod -> prod.getIdProducto() == p.getIdProducto());
-
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Producto prod : listaActual) {
+            for (Producto prod : lista) {
                 writer.printf(FORMAT, prod.getIdProducto(), prod.getIdCategoria(), prod.getNombre(),
                         prod.getIdProveedor(), prod.getPrecioCompra(), prod.getPrecioVenta(), prod.getStock());
             }
@@ -140,17 +135,9 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
     }
 
     @Override
-    public void actualizarDeArchivo(Producto p) {
-        List<Producto> listaActual = listar();
-        for (int i = 0; i < listaActual.size(); i++) {
-            if (listaActual.get(i).getIdProducto() == p.getIdProducto()) {
-                listaActual.set(i, p);
-                break;
-            }
-        }
-
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Producto prod : listaActual) {
+            for (Producto prod : lista) {
                 writer.printf(FORMAT, prod.getIdProducto(), prod.getIdCategoria(), prod.getNombre(),
                         prod.getIdProveedor(), prod.getPrecioCompra(), prod.getPrecioVenta(), prod.getStock());
             }

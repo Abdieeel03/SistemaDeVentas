@@ -60,7 +60,7 @@ public final class CategoriaDAO implements CRUD<Categoria>, Persistible<Categori
         Categoria c = buscarPorId(id);
         if (c != null) {
             arregloCategoria.eliminar(c);
-            eliminarDeArchivo(c);
+            eliminarDeArchivo();
         }
     }
 
@@ -70,7 +70,7 @@ public final class CategoriaDAO implements CRUD<Categoria>, Persistible<Categori
             Categoria actual = arregloCategoria.obtener(i);
             if (actual.getIdCategoria() == entidad.getIdCategoria()) {
                 arregloCategoria.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -130,11 +130,10 @@ public final class CategoriaDAO implements CRUD<Categoria>, Persistible<Categori
     }
 
     @Override
-    public void eliminarDeArchivo(Categoria elemento) {
-        List<Categoria> listaActual = listar();
-        listaActual.removeIf(c -> c.getIdCategoria() == elemento.getIdCategoria());
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Categoria c : listaActual) {
+            for (int i = 0; i < arregloCategoria.tamanio(); i++) {
+                Categoria c = arregloCategoria.obtener(i);
                 writer.printf(FORMAT, c.getIdCategoria(), c.getNombre());
             }
         } catch (IOException e) {
@@ -143,17 +142,10 @@ public final class CategoriaDAO implements CRUD<Categoria>, Persistible<Categori
     }
 
     @Override
-    public void actualizarDeArchivo(Categoria elemento) {
-        List<Categoria> listaActual = listar();
-        for (int i = 0; i < listaActual.size(); i++) {
-            if (listaActual.get(i).getIdCategoria() == elemento.getIdCategoria()) {
-                listaActual.set(i, elemento);
-                break;
-            }
-        }
-
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Categoria c : listaActual) {
+            for (int i = 0; i < arregloCategoria.tamanio(); i++) {
+                Categoria c = arregloCategoria.obtener(i);
                 writer.printf(FORMAT, c.getIdCategoria(), c.getNombre());
             }
         } catch (IOException e) {

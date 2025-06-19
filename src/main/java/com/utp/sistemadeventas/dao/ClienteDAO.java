@@ -56,7 +56,7 @@ public final class ClienteDAO implements CRUD<Cliente>, Persistible<Cliente> {
         Cliente c = buscarPorId(id);
         if (c != null) {
             lista.remove(c);
-            eliminarDeArchivo(c);
+            eliminarDeArchivo();
         }
     }
 
@@ -65,7 +65,7 @@ public final class ClienteDAO implements CRUD<Cliente>, Persistible<Cliente> {
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getId_cliente().equals(entidad.getId_cliente())) {
                 lista.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -119,11 +119,9 @@ public final class ClienteDAO implements CRUD<Cliente>, Persistible<Cliente> {
     }
 
     @Override
-    public void eliminarDeArchivo(Cliente elemento) {
-        List<Cliente> listaActual = new ArrayList<>(lista);
-        listaActual.removeIf(c -> c.getId_cliente().equals(elemento.getId_cliente()));
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Cliente c : listaActual) {
+            for (Cliente c : lista) {
                 writer.printf(FORMAT, c.getId_cliente(), c.getNombre());
             }
         } catch (IOException e) {
@@ -132,17 +130,9 @@ public final class ClienteDAO implements CRUD<Cliente>, Persistible<Cliente> {
     }
 
     @Override
-    public void actualizarDeArchivo(Cliente elemento) {
-        List<Cliente> listaActual = new ArrayList<>(lista);
-        for (int i = 0; i < listaActual.size(); i++) {
-            if (listaActual.get(i).getId_cliente().equals(elemento.getId_cliente())) {
-                listaActual.set(i, elemento);
-                break;
-            }
-        }
-
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Cliente c : listaActual) {
+            for (Cliente c : lista) {
                 writer.printf(FORMAT, c.getId_cliente(), c.getNombre());
             }
         } catch (IOException e) {

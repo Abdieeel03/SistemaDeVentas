@@ -60,7 +60,7 @@ public final class VentaDAO implements CRUD<Venta>, Persistible<Venta> {
         Venta v = buscarPorId(id);
         if (v != null) {
             lista.remove(v);
-            eliminarDeArchivo(v);
+            eliminarDeArchivo();
         }
     }
 
@@ -69,7 +69,7 @@ public final class VentaDAO implements CRUD<Venta>, Persistible<Venta> {
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getId_venta() == entidad.getId_venta()) {
                 lista.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -132,7 +132,7 @@ public final class VentaDAO implements CRUD<Venta>, Persistible<Venta> {
     }
 
     @Override
-    public void eliminarDeArchivo(Venta elemento) {
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (Venta venta : lista) {
                 writer.printf(Locale.US, FORMAT,
@@ -149,7 +149,7 @@ public final class VentaDAO implements CRUD<Venta>, Persistible<Venta> {
     }
 
     @Override
-    public void actualizarDeArchivo(Venta elemento) {
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (Venta venta : lista) {
                 writer.printf(Locale.US, FORMAT,

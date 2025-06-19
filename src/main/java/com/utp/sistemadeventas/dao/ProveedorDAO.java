@@ -56,7 +56,7 @@ public final class ProveedorDAO implements CRUD<Proveedor>, Persistible<Proveedo
         Proveedor p = buscarPorId(id);
         if (p != null) {
             lista.remove(p);
-            eliminarDeArchivo(p);
+            eliminarDeArchivo();
         }
     }
 
@@ -65,7 +65,7 @@ public final class ProveedorDAO implements CRUD<Proveedor>, Persistible<Proveedo
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getIdProveedor().equals(entidad.getIdProveedor())) {
                 lista.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -119,12 +119,9 @@ public final class ProveedorDAO implements CRUD<Proveedor>, Persistible<Proveedo
     }
 
     @Override
-    public void eliminarDeArchivo(Proveedor elemento) {
-        List<Proveedor> listaActual = new ArrayList<>(lista);
-        listaActual.removeIf(p -> p.getIdProveedor().equals(elemento.getIdProveedor()));
-
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Proveedor p : listaActual) {
+            for (Proveedor p : lista) {
                 writer.printf(FORMAT, p.getIdProveedor(), p.getNombre(), p.getDireccion(), p.getTelefono(), p.getPaginaWeb());
             }
         } catch (IOException e) {
@@ -133,17 +130,9 @@ public final class ProveedorDAO implements CRUD<Proveedor>, Persistible<Proveedo
     }
 
     @Override
-    public void actualizarDeArchivo(Proveedor elemento) {
-        List<Proveedor> listaActual = new ArrayList<>(lista);
-        for (int i = 0; i < listaActual.size(); i++) {
-            if (listaActual.get(i).getIdProveedor().equals(elemento.getIdProveedor())) {
-                listaActual.set(i, elemento);
-                break;
-            }
-        }
-
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Proveedor p : listaActual) {
+            for (Proveedor p : lista) {
                 writer.printf(FORMAT, p.getIdProveedor(), p.getNombre(), p.getDireccion(), p.getTelefono(), p.getPaginaWeb());
             }
         } catch (IOException e) {

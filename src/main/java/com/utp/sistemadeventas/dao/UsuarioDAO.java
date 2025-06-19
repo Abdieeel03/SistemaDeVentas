@@ -3,7 +3,6 @@ package com.utp.sistemadeventas.dao;
 import com.utp.sistemadeventas.modelos.Usuario;
 import com.utp.sistemadeventas.dao.interfaces.CRUD;
 import com.utp.sistemadeventas.dao.interfaces.Persistible;
-import com.utp.sistemadeventas.modelos.Rol;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -57,7 +56,7 @@ public final class UsuarioDAO implements CRUD<Usuario>, Persistible<Usuario> {
         Usuario u = buscarPorId(id);
         if (u != null) {
             lista.remove(u);
-            eliminarDeArchivo(u);
+            eliminarDeArchivo();
         }
     }
 
@@ -66,7 +65,7 @@ public final class UsuarioDAO implements CRUD<Usuario>, Persistible<Usuario> {
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getIdUsuario().equals(entidad.getIdUsuario())) {
                 lista.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -120,12 +119,9 @@ public final class UsuarioDAO implements CRUD<Usuario>, Persistible<Usuario> {
     }
 
     @Override
-    public void eliminarDeArchivo(Usuario u) {
-        List<Usuario> listaActual = new ArrayList<>(lista);
-        listaActual.removeIf(us -> us.getIdUsuario().equals(u.getIdUsuario()));
-
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Usuario us : listaActual) {
+            for (Usuario us : lista) {
                 writer.printf(FORMAT, us.getIdUsuario(), us.getNombre(), us.getUsuario(), us.getContraseña(), us.getDescripcion(), us.getIdRol());
             }
         } catch (IOException e) {
@@ -134,17 +130,9 @@ public final class UsuarioDAO implements CRUD<Usuario>, Persistible<Usuario> {
     }
 
     @Override
-    public void actualizarDeArchivo(Usuario u) {
-        List<Usuario> listaActual = new ArrayList<>(lista);
-        for (int i = 0; i < listaActual.size(); i++) {
-            if (listaActual.get(i).getIdUsuario().equals(u.getIdUsuario())) {
-                listaActual.set(i, u);
-                break;
-            }
-        }
-
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Usuario us : listaActual) {
+            for (Usuario us : lista) {
                 writer.printf(FORMAT, us.getIdUsuario(), us.getNombre(), us.getUsuario(), us.getContraseña(), us.getDescripcion(), us.getIdRol());
             }
         } catch (IOException e) {

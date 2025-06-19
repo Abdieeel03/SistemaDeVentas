@@ -60,7 +60,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
         Rol rol = buscarPorId(id);
         if (rol != null) {
             arregloRol.eliminar(rol);
-            eliminarDeArchivo(rol);
+            eliminarDeArchivo();
         }
     }
 
@@ -70,7 +70,7 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
             Rol actual = arregloRol.obtener(i);
             if (actual.getIdRol() == entidad.getIdRol()) {
                 arregloRol.set(i, entidad);
-                actualizarDeArchivo(entidad);
+                actualizarDeArchivo();
                 break;
             }
         }
@@ -130,12 +130,10 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
     }
 
     @Override
-    public void eliminarDeArchivo(Rol elemento) {
-        List<Rol> listaActual = listar();
-        listaActual.removeIf(r -> r.getIdRol() == elemento.getIdRol());
-
+    public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Rol r : listaActual) {
+            for (int i = 0; i < arregloRol.tamanio(); i++) {
+                Rol r = arregloRol.obtener(i);
                 writer.printf(FORMAT, r.getIdRol(), r.getNombre());
             }
         } catch (IOException e) {
@@ -144,17 +142,10 @@ public final class RolDAO implements CRUD<Rol>, Persistible<Rol> {
     }
 
     @Override
-    public void actualizarDeArchivo(Rol elemento) {
-        List<Rol> listaActual = listar();
-        for (int i = 0; i < listaActual.size(); i++) {
-            if (listaActual.get(i).getIdRol() == elemento.getIdRol()) {
-                listaActual.set(i, elemento);
-                break;
-            }
-        }
-
+    public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
-            for (Rol r : listaActual) {
+            for (int i = 0; i < arregloRol.tamanio(); i++) {
+                Rol r = arregloRol.obtener(i);
                 writer.printf(FORMAT, r.getIdRol(), r.getNombre());
             }
         } catch (IOException e) {
