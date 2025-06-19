@@ -32,6 +32,7 @@ com\utp\sistemadeventas\vistas\PanelRegistrarVenta$4.class
 com\utp\sistemadeventas\dao\ProductoDAO.class
 com\utp\sistemadeventas\estructuras\ListaEnlazadaSimple$Nodo.class
 com\utp\sistemadeventas\vistas\VtnInicio$4.class
+com\utp\sistemadeventas\util\VentaHelper.class
 com\utp\sistemadeventas\vistas\ReporteDeVentas.class
 com\utp\sistemadeventas\modelos\Rol.class
 com\utp\sistemadeventas\vistas\BuscarProveedor$2.class
@@ -57,6 +58,7 @@ com\utp\sistemadeventas\vistas\PanelProductos.class
 com\utp\sistemadeventas\vistas\PanelRegistrarVenta$2.class
 com\utp\sistemadeventas\vistas\VtnInicio.class
 com\utp\sistemadeventas\vistas\EditarProducto.class
+com\utp\sistemadeventas\util\ProductoHelper.class
 com\utp\sistemadeventas\vistas\VtnInicio$5.class
 com\utp\sistemadeventas\vistas\EditarProveedor$2.class
 com\utp\sistemadeventas\vistas\PanelPrincipal.class
@@ -70,6 +72,8 @@ com\utp\sistemadeventas\vistas\PanelProveedor.class
 com\utp\sistemadeventas\controlador\ControlUsuario.class
 com\utp\sistemadeventas\vistas\PanelRegistrarVenta$1.class
 com\utp\sistemadeventas\vistas\ReporteDeVentas$1.class
+com\utp\sistemadeventas\util\UsuarioHelper.class
+com\utp\sistemadeventas\util\DetalleVentaHelper.class
 com\utp\sistemadeventas\vistas\PanelProveedor$1.class
 com\utp\sistemadeventas\vistas\PanelProductos$1.class
 com\utp\sistemadeventas\modelos\Categoria.class

@@ -31,6 +31,10 @@ C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\modelos\Pro
 C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\modelos\Rol.java
 C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\modelos\Usuario.java
 C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\modelos\Venta.java
+C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\util\DetalleVentaHelper.java
+C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\util\ProductoHelper.java
+C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\util\UsuarioHelper.java
+C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\util\VentaHelper.java
 C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\vistas\BuscarProducto.java
 C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\vistas\BuscarProveedor.java
 C:\Users\marce\SistemaDeVentas\src\main\java\com\utp\sistemadeventas\vistas\BuscarUsuario.java

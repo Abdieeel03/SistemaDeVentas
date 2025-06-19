@@ -4,18 +4,17 @@
 package com.utp.sistemadeventas;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import com.utp.sistemadeventas.dao.CategoriaDAO;
+import com.utp.sistemadeventas.dao.ClienteDAO;
+import com.utp.sistemadeventas.dao.DetalleVentaDAO;
+import com.utp.sistemadeventas.dao.MedioPagoDAO;
 import com.utp.sistemadeventas.dao.ProductoDAO;
-import com.utp.sistemadeventas.dao.ProveedorDAO;
-import com.utp.sistemadeventas.dao.RolDAO;
-import com.utp.sistemadeventas.dao.UsuarioDAO;
-import com.utp.sistemadeventas.modelos.Categoria;
-import com.utp.sistemadeventas.modelos.Producto;
-import com.utp.sistemadeventas.modelos.Rol;
-import com.utp.sistemadeventas.modelos.Usuario;
+import com.utp.sistemadeventas.dao.VentaDAO;
+import com.utp.sistemadeventas.modelos.DetalleVenta;
+import com.utp.sistemadeventas.modelos.Venta;
+import com.utp.sistemadeventas.util.DetalleVentaHelper;
+import com.utp.sistemadeventas.util.VentaHelper;
 import com.utp.sistemadeventas.vistas.VtnLogin;
-import java.util.List;
-import javax.swing.JOptionPane;
+import java.util.Date;
 
 /**
  *
@@ -28,47 +27,31 @@ public class Main {
         System.out.println("Hello World!");
         VtnLogin vtnLogin = new VtnLogin();
         vtnLogin.setVisible(true);
-        JOptionPane.showMessageDialog(vtnLogin, "Hola");
-        CategoriaDAO rDAO = new CategoriaDAO();
-        List<Categoria> lista = rDAO.listar();
-        for (Categoria r : lista) {
-            JOptionPane.showMessageDialog(vtnLogin, r.getNombre());
-        }
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        RolDAO rolDAO = new RolDAO();
-
-        System.out.println("Lista de Usuarios:");
-        System.out.println("------------------------------------------------------");
-        System.out.printf("%-10s %-20s %-15s %-15s\n", "ID", "Nombre", "Usuario", "Rol");
-        System.out.println("------------------------------------------------------");
-
-        for (Usuario u : usuarioDAO.listar()) {
-            String rol = usuarioDAO.obtenerNombreRol(u, rolDAO);
-            System.out.printf("%-10s %-20s %-15s %-15s\n",
-                    u.getIdUsuario(), u.getNombre(), u.getUsuario(), rol);
-        }
-
-        System.out.println("------------------------------------------------------");
-
+        
         ProductoDAO productoDAO = new ProductoDAO();
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
-        ProveedorDAO proveedorDAO = new ProveedorDAO();
+        VentaDAO ventaDAO = new VentaDAO();
+        DetalleVentaDAO detalleDAO = new DetalleVentaDAO();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        MedioPagoDAO medioPagoDAO = new MedioPagoDAO();
 
-        System.out.println("Lista de Productos:");
-        System.out.println("---------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-5s %-30s %-20s %-25s %-10s %-10s %-6s\n",
-                "ID", "Nombre", "Categoría", "Proveedor", "P. Compra", "P. Venta", "Stock");
-        System.out.println("---------------------------------------------------------------------------------------------------------");
+        Venta nuevaVenta = new Venta(0, new Date(), 0.0, 2, "00000000");
+        ventaDAO.agregar(nuevaVenta);
 
-        for (Producto p : productoDAO.listar()) {
-            String nombreCategoria = productoDAO.obtenerNombreCategoria(p, categoriaDAO);
-            String nombreProveedor = productoDAO.obtenerNombreProveedor(p, proveedorDAO);
+        int idVenta = nuevaVenta.getId_venta();
+        System.out.println("Venta creada con ID: " + idVenta);
 
-            System.out.printf("%-5d %-30s %-20s %-25s %-10.2f %-10.2f %-6d\n",
-                    p.getIdProducto(), p.getNombre(), nombreCategoria, nombreProveedor,
-                    p.getPrecioCompra(), p.getPrecioVenta(), p.getStock());
-        }
+        DetalleVenta detalle1 = DetalleVentaHelper.crearDetalle(idVenta, 4, 5, productoDAO); // Producto 1, cantidad 2
+        DetalleVenta detalle2 = DetalleVentaHelper.crearDetalle(idVenta, 10, 2, productoDAO); // Producto 2, cantidad 1
 
-        System.out.println("---------------------------------------------------------------------------------------------------------");
+        detalleDAO.agregar(detalle1);
+        detalleDAO.agregar(detalle2);
+
+        double totalVenta = detalle1.getSubtotal() + detalle2.getSubtotal();
+        nuevaVenta.setTotal(totalVenta);
+        ventaDAO.actualizar(nuevaVenta);
+
+        VentaHelper.mostrarVentas(ventaDAO, clienteDAO, medioPagoDAO);
+        DetalleVentaHelper.mostrarDetallesVenta(idVenta, detalleDAO, productoDAO);
+        DetalleVentaHelper.mostrarTodosLosDetalles(detalleDAO, productoDAO);
     }
 }
