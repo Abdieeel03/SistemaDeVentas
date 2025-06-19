@@ -32,6 +32,6 @@ public class Main {
         VentaDAO ventaDAO = new VentaDAO();
         
         Controlador controlador = new Controlador(vtnInicio, vtnLogin, categoriaDAO, clienteDAO, detalleDAO, medioPagoDAO, productoDAO, proveedorDAO, rolDAO, usuarioDAO, ventaDAO);
-        vtnLogin.setVisible(true);
+        controlador.iniciarEjecucion();
     }
 }

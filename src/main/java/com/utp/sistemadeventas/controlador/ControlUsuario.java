@@ -5,10 +5,10 @@
 package com.utp.sistemadeventas.controlador;
 
 import com.utp.sistemadeventas.dao.*;
+import com.utp.sistemadeventas.estructuras.ListaEnlazadaDoble;
 import com.utp.sistemadeventas.vistas.*;
 import com.utp.sistemadeventas.modelos.*;
 import com.utp.sistemadeventas.util.UsuarioHelper;
-import java.awt.HeadlessException;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -41,8 +41,9 @@ public class ControlUsuario {
     }
 
     public void showEditarUsuario(int fila) {
+        Usuario u = this.lista.obtener(fila);
         llenarComboBox();
-        llenarDatosEditar(fila);
+        llenarDatosEditar(u);
         vtnInicio.mostrarPanel(editarUsuario);
     }
 
@@ -80,9 +81,18 @@ public class ControlUsuario {
         }
     }
 
+    private ListaEnlazadaDoble<Usuario> llenarListaEnlazada() {
+        this.lista = new ListaEnlazadaDoble();
+        for (Usuario u : usuarioDAO.listar()) {
+            lista.agregar(u);
+        }
+        return lista;
+    }
+
     public void llenarTabla() throws Exception {
         DefaultTableModel model = (DefaultTableModel) buscarUsuario.table.getModel();
         model.setRowCount(0);
+        this.lista = llenarListaEnlazada();
         for (Usuario u : usuarioDAO.listar()) {
             Object[] object = new Object[4];
             object[0] = u.getIdUsuario();
@@ -95,12 +105,14 @@ public class ControlUsuario {
         buscarUsuario.table.setRowSorter(sorter);
     }
 
-    public void llenarDatosEditar(int fila) {
-        editarUsuario.txtID.setText((String) buscarUsuario.table.getValueAt(fila, 0));
-        editarUsuario.txtNombre.setText((String) buscarUsuario.table.getValueAt(fila, 1));
-        editarUsuario.cmbRol.setSelectedItem((String) buscarUsuario.table.getValueAt(fila, 2));
-        editarUsuario.txtUsuario.setText((String) buscarUsuario.table.getValueAt(fila, 3));
-        editarUsuario.txtContraseña.setText(UsuarioHelper.obtenerContrasena(usuarioDAO.buscarPorId((String) buscarUsuario.table.getValueAt(fila, 0))));
+    public void llenarDatosEditar(Usuario u) {
+        editarUsuario.txtID.setText(u.getIdUsuario());
+        editarUsuario.txtNombre.setText(u.getNombre());
+        editarUsuario.cmbRol.setSelectedItem(UsuarioHelper.obtenerNombreRol(u, rolDAO));
+        editarUsuario.txtUsuario.setText(u.getUsuario());
+        editarUsuario.txtContraseña.setText(u.getContraseña());
+        editarUsuario.txtID.setEditable(false);
+        editarUsuario.txtContraseña.setEditable(true);
     }
 
     public void llenarDescripcion(String selectedItem) {
@@ -151,16 +163,29 @@ public class ControlUsuario {
             editarUsuario.txtNombre.requestFocus();
             return;
         }
+
+        String idUsuario = editarUsuario.txtID.getText();
         String nombreRol = editarUsuario.cmbRol.getSelectedItem().toString();
-        Usuario usuario = usuarioDAO.buscarPorId(editarUsuario.txtID.getText());
-        usuario.setNombre(editarUsuario.txtNombre.getText());
-        usuario.setIdRol(UsuarioHelper.obtenerIdRol(nombreRol, rolDAO));
-        usuario.setUsuario(editarUsuario.txtUsuario.getText());
-        usuario.setContraseña(editarUsuario.txtContraseña.getText());
-        usuario.setDescripcion(editarUsuario.txtaDescripcion.getText());
-        usuarioDAO.actualizar(usuario);
-        vtnInicio.mostrarPanel(panelUsuario);
-        editarUsuario.limpiar();
+
+        Usuario usuarioActualizado = new Usuario();
+        usuarioActualizado.setIdUsuario(idUsuario);
+        usuarioActualizado.setNombre(editarUsuario.txtNombre.getText());
+        usuarioActualizado.setIdRol(UsuarioHelper.obtenerIdRol(nombreRol, rolDAO));
+        usuarioActualizado.setUsuario(editarUsuario.txtUsuario.getText());
+        usuarioActualizado.setContraseña(editarUsuario.txtContraseña.getText());
+        usuarioActualizado.setDescripcion(editarUsuario.txtaDescripcion.getText());
+
+        usuarioDAO.actualizar(usuarioActualizado);
+
+        for (int i = 0; i < lista.tamanio(); i++) {
+            Usuario u = lista.obtener(i);
+            if (u.getIdUsuario().equals(idUsuario)) {
+                lista.set(i, usuarioActualizado);
+                break;
+            }
+        }
+        
+        llenarDatosEditar(lista.obtenerActual());
         JOptionPane.showMessageDialog(vtnInicio, "Usuario actualizado correctamente", "AVISO", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -172,11 +197,37 @@ public class ControlUsuario {
         );
 
         if (opcion == JOptionPane.YES_OPTION) {
-            usuarioDAO.eliminar(editarUsuario.txtID.getText());
-            vtnInicio.mostrarPanel(panelUsuario);
+            Usuario usuarioAEliminar = lista.obtenerActual();
+            usuarioDAO.eliminar(usuarioAEliminar.getIdUsuario());
+            lista.eliminar(usuarioAEliminar);
+
+            if (!lista.estaVacia()) {
+                llenarDatosEditar(lista.obtenerActual());
+            } else {
+                vtnInicio.mostrarPanel(panelUsuario);
+                JOptionPane.showMessageDialog(null, "No quedan usuarios en la lista", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+            }
+
             JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente!", "AVISO", JOptionPane.INFORMATION_MESSAGE);
-            editarUsuario.limpiar();
         }
+    }
+
+    private void anteriorRegistro() {
+        if (lista.anterior()) {
+            Usuario u = lista.obtenerActual();
+            llenarDatosEditar(u);
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Ya estás en el primer registro", "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void siguienteRegistro() {
+        if (lista.siguiente()) {
+            Usuario u = lista.obtenerActual();
+            llenarDatosEditar(u);
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Ya estás en el último registro", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
     //Declaracion de variables
@@ -187,6 +238,8 @@ public class ControlUsuario {
     private EditarUsuario editarUsuario;
     private UsuarioDAO usuarioDAO;
     private RolDAO rolDAO;
+    //Lista Enlazada
+    private ListaEnlazadaDoble<Usuario> lista;
 
     //Controlador
     public ControlUsuario(VtnInicio vtnInicio, PanelUsuario panelUsuario, BuscarUsuario buscarUsuario, NuevoUsuario nuevoUsuario, EditarUsuario editarUsuario, UsuarioDAO usuarioDAO, RolDAO rolDAO) {
@@ -235,18 +288,20 @@ public class ControlUsuario {
             }
         });
         buscarUsuario.txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
             public void insertUpdate(DocumentEvent e) {
                 buscarRegistro();
             }
 
+            @Override
             public void removeUpdate(DocumentEvent e) {
                 buscarRegistro();
             }
 
+            @Override
             public void changedUpdate(DocumentEvent e) {
                 buscarRegistro();
             }
-
         });
 
         editarUsuario.cmbRol.addItemListener(new ItemListener() {
@@ -258,6 +313,8 @@ public class ControlUsuario {
                 }
             }
         });
+        editarUsuario.btnAnterior.addActionListener(e -> anteriorRegistro());
+        editarUsuario.btnSiguiente.addActionListener(e -> siguienteRegistro());
         editarUsuario.btnEliminar.addActionListener(e -> eliminarRegistro());
         editarUsuario.btnActualizar.addActionListener(e -> actualizarRegistro());
         editarUsuario.btnCancelar.addActionListener(e -> accionCancelar());

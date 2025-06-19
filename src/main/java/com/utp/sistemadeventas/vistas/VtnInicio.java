@@ -86,7 +86,7 @@ public class VtnInicio extends javax.swing.JFrame {
         pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
         pnlBackground.setMinimumSize(new java.awt.Dimension(1280, 730));
 
-        pnlMenu.setBackground(new java.awt.Color(255, 255, 153));
+        pnlMenu.setBackground(new java.awt.Color(167, 218, 220));
         pnlMenu.setPreferredSize(new java.awt.Dimension(374, 730));
 
         lblNbrEmpresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,9 +202,9 @@ public class VtnInicio extends javax.swing.JFrame {
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReporteVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(24, 24, 24))
         );
 
         pnlPantalla.setBackground(new java.awt.Color(255, 255, 255));
@@ -233,7 +233,7 @@ public class VtnInicio extends javax.swing.JFrame {
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(pnlPantalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 

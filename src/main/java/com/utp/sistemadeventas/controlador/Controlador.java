@@ -4,7 +4,6 @@ import com.utp.sistemadeventas.dao.*;
 import com.utp.sistemadeventas.vistas.*;
 import com.utp.sistemadeventas.modelos.*;
 import com.utp.sistemadeventas.util.UsuarioHelper;
-import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -16,7 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class Controlador {
 
-    public void iniciarEjecucion() {
+    public void iniciarEjecucion(){
+        vtnLogin.setVisible(true);
+    }
+    
+    public void iniciarSesion() {
         vtnLogin.setVisible(false);
         vtnInicio.mostrarPanel(new PanelPrincipal());
         vtnInicio.setVisible(true);
@@ -80,7 +83,7 @@ public class Controlador {
         }
 
         if (usuarioEncontrado) {
-            iniciarEjecucion();
+            iniciarSesion();
         } else {
             JOptionPane.showMessageDialog(null, "Datos Incorrectos!");
         }
@@ -191,7 +194,7 @@ public class Controlador {
         nuevoProducto = new NuevoProducto();
         buscarProducto = new BuscarProducto();
         editarProducto = new EditarProducto();
-        controlProducto = new ControlProducto();
+        controlProducto = new ControlProducto(vtnInicio, panelProductos, buscarProducto, nuevoProducto, editarProducto, productoDAO, proveedorDAO, categoriaDAO);
         //Proveedor
         panelProveedor = new PanelProveedor();
         nuevoProveedor = new NuevoProveedor();

@@ -25,6 +25,7 @@ com\utp\sistemadeventas\vistas\BuscarProveedor$1.class
 com\utp\sistemadeventas\vistas\BuscarUsuario$1.class
 com\utp\sistemadeventas\vistas\EditarProducto$1.class
 com\utp\sistemadeventas\dao\interfaces\CRUD.class
+com\utp\sistemadeventas\controlador\ControlProducto$2.class
 com\utp\sistemadeventas\vistas\PanelProveedor$2.class
 com\utp\sistemadeventas\vistas\NuevoProducto$1.class
 com\utp\sistemadeventas\estructuras\interfaces\Modificable.class
@@ -56,6 +57,7 @@ com\utp\sistemadeventas\vistas\NuevoProveedor.class
 com\utp\sistemadeventas\vistas\BuscarProveedor.class
 com\utp\sistemadeventas\vistas\NuevoProveedor$2.class
 com\utp\sistemadeventas\vistas\PanelProductos.class
+com\utp\sistemadeventas\controlador\ControlProducto$1.class
 com\utp\sistemadeventas\vistas\PanelRegistrarVenta$2.class
 com\utp\sistemadeventas\vistas\VtnInicio.class
 com\utp\sistemadeventas\vistas\EditarProducto.class
