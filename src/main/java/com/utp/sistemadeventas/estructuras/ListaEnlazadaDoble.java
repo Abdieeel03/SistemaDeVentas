@@ -15,11 +15,13 @@ public class ListaEnlazadaDoble<T> implements Modificable<T>, Accesible<T> {
 
     private Nodo<T> cabeza;
     private Nodo<T> cola;
+    private Nodo<T> nodoActual; // 🔁 Puntero de navegación
     private int size;
 
     public ListaEnlazadaDoble() {
         cabeza = null;
         cola = null;
+        nodoActual = null;
         size = 0;
     }
 
@@ -41,11 +43,16 @@ public class ListaEnlazadaDoble<T> implements Modificable<T>, Accesible<T> {
         if (cabeza == null) {
             return;
         }
-        // Si el elemento está en la cabeza
+        // Caso especial: cabeza
         if (cabeza.dato.equals(elemento)) {
+            if (nodoActual == cabeza) {
+                nodoActual = cabeza.siguiente != null ? cabeza.siguiente : null;
+            }
             cabeza = cabeza.siguiente;
             if (cabeza != null) {
                 cabeza.anterior = null;
+            } else {
+                cola = null;
             }
             size--;
             return;
@@ -57,9 +64,21 @@ public class ListaEnlazadaDoble<T> implements Modificable<T>, Accesible<T> {
         }
 
         if (nodoTemp != null) {
+            if (nodoActual == nodoTemp) {
+                if (nodoTemp.siguiente != null) {
+                    nodoActual = nodoTemp.siguiente;
+                } else if (nodoTemp.anterior != null) {
+                    nodoActual = nodoTemp.anterior;
+                } else {
+                    nodoActual = null;
+                }
+            }
+
             if (nodoTemp == cola) {
                 cola = nodoTemp.anterior;
-                cola.siguiente = null;
+                if (cola != null) {
+                    cola.siguiente = null;
+                }
             } else {
                 nodoTemp.anterior.siguiente = nodoTemp.siguiente;
                 nodoTemp.siguiente.anterior = nodoTemp.anterior;
@@ -78,6 +97,7 @@ public class ListaEnlazadaDoble<T> implements Modificable<T>, Accesible<T> {
         for (int i = 0; i < index; i++) {
             nodoTemp = nodoTemp.siguiente;
         }
+        nodoActual = nodoTemp;
         return nodoTemp.dato;
     }
 
@@ -89,6 +109,48 @@ public class ListaEnlazadaDoble<T> implements Modificable<T>, Accesible<T> {
     @Override
     public int tamanio() {
         return size;
+    }
+
+    public void set(int index, T nuevoElemento) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango.");
+        }
+
+        Nodo<T> nodoTemp = cabeza;
+        for (int i = 0; i < index; i++) {
+            nodoTemp = nodoTemp.siguiente;
+        }
+
+        nodoTemp.dato = nuevoElemento;
+    }
+
+    // 🔁 Métodos para navegación secuencial
+    public void irAlInicio() {
+        nodoActual = cabeza;
+    }
+
+    public void irAlFinal() {
+        nodoActual = cola;
+    }
+
+    public boolean anterior() {
+        if (nodoActual != null && nodoActual.anterior != null) {
+            nodoActual = nodoActual.anterior;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean siguiente() {
+        if (nodoActual != null && nodoActual.siguiente != null) {
+            nodoActual = nodoActual.siguiente;
+            return true;
+        }
+        return false;
+    }
+
+    public T obtenerActual() {
+        return nodoActual != null ? nodoActual.dato : null;
     }
 
     private static class Nodo<T> {
