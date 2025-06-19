@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -115,7 +116,7 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
     @Override
     public void guardarEnArchivo(Producto p) {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo, true)))) {
-            writer.printf(FORMAT, p.getIdProducto(), p.getIdCategoria(), p.getNombre(), p.getIdProveedor(),
+            writer.printf(Locale.US, FORMAT, p.getIdProducto(), p.getIdCategoria(), p.getNombre(), p.getIdProveedor(),
                     p.getPrecioCompra(), p.getPrecioVenta(), p.getStock());
         } catch (IOException e) {
             System.err.println("Error al guardar producto en archivo: " + e.getMessage());
@@ -126,7 +127,7 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
     public void eliminarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (Producto prod : lista) {
-                writer.printf(FORMAT, prod.getIdProducto(), prod.getIdCategoria(), prod.getNombre(),
+                writer.printf(Locale.US, FORMAT, prod.getIdProducto(), prod.getIdCategoria(), prod.getNombre(),
                         prod.getIdProveedor(), prod.getPrecioCompra(), prod.getPrecioVenta(), prod.getStock());
             }
         } catch (IOException e) {
@@ -138,7 +139,7 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
     public void actualizarDeArchivo() {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(archivo)))) {
             for (Producto prod : lista) {
-                writer.printf(FORMAT, prod.getIdProducto(), prod.getIdCategoria(), prod.getNombre(),
+                writer.printf(Locale.US, FORMAT, prod.getIdProducto(), prod.getIdCategoria(), prod.getNombre(),
                         prod.getIdProveedor(), prod.getPrecioCompra(), prod.getPrecioVenta(), prod.getStock());
             }
         } catch (IOException e) {
