@@ -213,13 +213,4 @@ public final class ProductoDAO implements CRUD<Producto>, Persistible<Producto> 
         return ultimoIndice;
     }
 
-    public String obtenerNombreCategoria(Producto producto, CategoriaDAO categoriaDAO) {
-        Categoria categoria = categoriaDAO.buscarPorId(String.valueOf(producto.getIdCategoria()));
-        return categoria != null ? categoria.getNombre() : "Categoría no encontrada";
-    }
-
-    public String obtenerNombreProveedor(Producto producto, ProveedorDAO proveedorDAO) {
-        Proveedor proveedor = proveedorDAO.buscarPorId(producto.getIdProveedor());
-        return proveedor != null ? proveedor.getNombre() : "Proveedor no encontrado";
-    }
 }

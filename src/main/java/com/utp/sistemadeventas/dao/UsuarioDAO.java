@@ -183,9 +183,4 @@ public final class UsuarioDAO implements CRUD<Usuario>, Persistible<Usuario> {
         return -1; // No aplica porque el ID es definido externamente
     }
 
-    public String obtenerNombreRol(Usuario usuario, RolDAO rolDAO) {
-        Rol rol = rolDAO.buscarPorId(String.valueOf(usuario.getIdRol()));
-        return rol != null ? rol.getNombre() : "Rol no encontrado";
-    }
-
 }
