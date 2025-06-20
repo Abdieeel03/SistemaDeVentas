@@ -125,6 +125,7 @@ public class ControlProducto {
         String nombreProveedor = editarProducto.cmbProveedor.getSelectedItem().toString();
         
         Producto productoActualizado = new Producto();
+        productoActualizado.setIdProducto(idProducto);
         productoActualizado.setNombre(editarProducto.txtNombre.getText());
         productoActualizado.setPrecioCompra(Double.parseDouble(editarProducto.txtPrecioCompra.getText()));
         productoActualizado.setPrecioVenta(Double.parseDouble(editarProducto.txtPrecioVenta.getText()));
