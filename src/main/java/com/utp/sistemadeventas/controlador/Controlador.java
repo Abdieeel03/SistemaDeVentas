@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class Controlador {
 
-    public void iniciarEjecucion(){
+    public void iniciarEjecucion() {
         vtnLogin.setVisible(true);
     }
-    
+
     public void iniciarSesion() {
         vtnLogin.setVisible(false);
         vtnInicio.mostrarPanel(new PanelPrincipal());
@@ -200,7 +200,7 @@ public class Controlador {
         nuevoProveedor = new NuevoProveedor();
         buscarProveedor = new BuscarProveedor();
         editarProveedor = new EditarProveedor();
-        controlProveedor = new ControlProveedor();
+        controlProveedor = new ControlProveedor(vtnInicio, panelProveedor, buscarProveedor, nuevoProveedor, editarProveedor, proveedorDAO);
         //Usuarios
         panelUsuario = new PanelUsuario();
         nuevoUsuario = new NuevoUsuario();

@@ -11,6 +11,7 @@ com\utp\sistemadeventas\vistas\VtnInicio$6.class
 com\utp\sistemadeventas\modelos\MedioPago.class
 com\utp\sistemadeventas\dao\CategoriaDAO.class
 com\utp\sistemadeventas\estructuras\ListaEnlazadaSimple.class
+com\utp\sistemadeventas\controlador\ControlProveedor$2.class
 com\utp\sistemadeventas\modelos\Proveedor.class
 com\utp\sistemadeventas\Main.class
 com\utp\sistemadeventas\estructuras\ListaEnlazadaDoble.class
@@ -69,6 +70,7 @@ com\utp\sistemadeventas\dao\ProveedorDAO.class
 com\utp\sistemadeventas\vistas\VtnInicio$2.class
 com\utp\sistemadeventas\vistas\PanelProductos$2.class
 com\utp\sistemadeventas\controlador\ControlUsuario$1.class
+com\utp\sistemadeventas\controlador\ControlProveedor$1.class
 com\utp\sistemadeventas\dao\DetalleVentaDAO.class
 com\utp\sistemadeventas\estructuras\Arreglo.class
 com\utp\sistemadeventas\modelos\Producto.class

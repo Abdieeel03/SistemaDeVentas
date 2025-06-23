@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Venta {
 
-    private int id_venta;
+    private int idVenta;
     private Date fechaVenta;
     private double total;
     private int idMedioPago;
@@ -15,7 +15,7 @@ public class Venta {
     }
 
     public Venta(int id_venta, Date fechaVenta, double total, int idMedioPago, String idCliente) {
-        this.id_venta = id_venta;
+        this.idVenta = id_venta;
         this.fechaVenta = fechaVenta;
         this.total = total;
         this.idMedioPago = idMedioPago;
@@ -23,11 +23,11 @@ public class Venta {
     }
 
     public int getId_venta() {
-        return id_venta;
+        return idVenta;
     }
 
     public void setId_venta(int id_venta) {
-        this.id_venta = id_venta;
+        this.idVenta = id_venta;
     }
 
     public Date getFechaVenta() {
