@@ -15,7 +15,7 @@ public class ListaEnlazadaDoble<T> implements Modificable<T>, Accesible<T> {
 
     private Nodo<T> cabeza;
     private Nodo<T> cola;
-    private Nodo<T> nodoActual; // 🔁 Puntero de navegación
+    private Nodo<T> nodoActual;
     private int size;
 
     public ListaEnlazadaDoble() {
@@ -124,7 +124,6 @@ public class ListaEnlazadaDoble<T> implements Modificable<T>, Accesible<T> {
         nodoTemp.dato = nuevoElemento;
     }
 
-    // 🔁 Métodos para navegación secuencial
     public void irAlInicio() {
         nodoActual = cabeza;
     }
