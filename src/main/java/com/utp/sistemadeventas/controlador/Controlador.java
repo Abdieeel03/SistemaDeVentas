@@ -26,6 +26,9 @@ public class Controlador {
     }
 
     public void showPanelRegistro() {
+        controlRegistro.limpiarDatos();
+        controlRegistro.llenarComboBox();
+        controlRegistro.vaciarTabla();
         vtnInicio.mostrarPanel(panelRegistrarVenta);
     }
 
@@ -188,7 +191,7 @@ public class Controlador {
         //Registro
         panelRegistrarVenta = new PanelRegistrarVenta();
         vtnSeleccionar = new VtnSeleccionarProducto();
-        controlRegistro = new ControlRegistro();
+        controlRegistro = new ControlRegistro(vtnInicio, vtnSeleccionar, panelRegistrarVenta, productoDAO, ventaDAO, detalleDAO,clienteDAO, medioPagoDAO);
         //Productos
         panelProductos = new PanelProductos();
         nuevoProducto = new NuevoProducto();

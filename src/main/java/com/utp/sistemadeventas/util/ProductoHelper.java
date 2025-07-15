@@ -65,4 +65,13 @@ public class ProductoHelper {
 
         System.out.println("---------------------------------------------------------------------------------------------------------");
     }
+
+    public static int obtenerIdProducto(String nombre, ProductoDAO productoDAO) {
+        for (Producto p : productoDAO.listar()) {
+            if (p.getNombre().equals(nombre)) {
+                return p.getIdProducto();
+            }
+        }
+        return -1;
+    }
 }

@@ -7,6 +7,8 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.utp.sistemadeventas.dao.*;
 import com.utp.sistemadeventas.vistas.*;
 import com.utp.sistemadeventas.controlador.*;
+import com.utp.sistemadeventas.util.DetalleVentaHelper;
+import com.utp.sistemadeventas.util.VentaHelper;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -51,6 +53,9 @@ public class Main {
 
         double porcentaje = ((double) (resultado2 - resultado1) / resultado2) * 100;
         System.out.printf("Mejora: %.2f%%\n", porcentaje);
+        
+        VentaHelper.mostrarVentas(ventaDAO, clienteDAO, medioPagoDAO);
+        DetalleVentaHelper.mostrarTodosLosDetalles(detalleDAO, productoDAO);
     }
 
     public static void escribirSinBuffer(String ruta) {
