@@ -191,7 +191,7 @@ public class Controlador {
         //Registro
         panelRegistrarVenta = new PanelRegistrarVenta();
         vtnSeleccionar = new VtnSeleccionarProducto();
-        controlRegistro = new ControlRegistro(vtnInicio, vtnSeleccionar, panelRegistrarVenta, productoDAO, ventaDAO, detalleDAO,clienteDAO, medioPagoDAO);
+        controlRegistro = new ControlRegistro(vtnInicio, vtnSeleccionar, panelRegistrarVenta, productoDAO, ventaDAO, detalleDAO, clienteDAO, medioPagoDAO);
         //Productos
         panelProductos = new PanelProductos();
         nuevoProducto = new NuevoProducto();
@@ -212,6 +212,6 @@ public class Controlador {
         controlUsuario = new ControlUsuario(vtnInicio, panelUsuario, buscarUsuario, nuevoUsuario, editarUsuario, usuarioDAO, rolDAO);
         //Reporte
         panelReporte = new ReporteDeVentas();
-        controlReporte = new ControlReporte();
+        controlReporte = new ControlReporte(vtnInicio, panelReporte, productoDAO, detalleDAO);
     }
 }
