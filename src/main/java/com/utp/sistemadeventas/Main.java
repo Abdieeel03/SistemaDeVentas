@@ -54,8 +54,6 @@ public class Main {
         double porcentaje = ((double) (resultado2 - resultado1) / resultado2) * 100;
         System.out.printf("Mejora: %.2f%%\n", porcentaje);
         
-        VentaHelper.mostrarVentas(ventaDAO, clienteDAO, medioPagoDAO);
-        DetalleVentaHelper.mostrarTodosLosDetalles(detalleDAO, productoDAO);
     }
 
     public static void escribirSinBuffer(String ruta) {

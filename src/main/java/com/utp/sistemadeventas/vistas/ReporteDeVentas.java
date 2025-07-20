@@ -81,11 +81,11 @@ public class ReporteDeVentas extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Producto", "Fecha", "Total"
+                "Producto", "Fecha", "Cantidad", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -97,6 +97,7 @@ public class ReporteDeVentas extends javax.swing.JPanel {
             tableUltimas.getColumnModel().getColumn(0).setResizable(false);
             tableUltimas.getColumnModel().getColumn(1).setResizable(false);
             tableUltimas.getColumnModel().getColumn(2).setResizable(false);
+            tableUltimas.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout pnlUltimasLayout = new javax.swing.GroupLayout(pnlUltimas);

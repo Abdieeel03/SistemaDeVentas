@@ -244,10 +244,6 @@ public class ControlRegistro {
 
     public void registrarVenta() {
         DefaultTableModel model = (DefaultTableModel) panelRegistrarVenta.tblCompra.getModel();
-        if (model.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun producto!", "AVISO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
         //Registrar Cliente
         Cliente c = guardarCliente();
@@ -284,6 +280,21 @@ public class ControlRegistro {
         calcularTotal();
         panelRegistrarVenta.limpiar();
 
+    }
+
+    public void btnRegistrar() {
+        DefaultTableModel model = (DefaultTableModel) panelRegistrarVenta.tblCompra.getModel();
+        if (model.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun producto!", "AVISO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(vtnInicio,
+                "¿Deseas registrar la venta?",
+                "Confirmar registro", JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            registrarVenta();
+        }
     }
 
     public Cliente guardarCliente() {
@@ -336,7 +347,7 @@ public class ControlRegistro {
             }
         });
         panelRegistrarVenta.btnRegistrarVenta.addActionListener(e -> {
-            registrarVenta();
+            btnRegistrar();
         });
         panelRegistrarVenta.btnCancelar.addActionListener(e -> botonCancelar());
         panelRegistrarVenta.btnEliminar.addActionListener(e -> eliminarProducto());

@@ -61,6 +61,7 @@ public class Controlador {
             JOptionPane.showMessageDialog(null, "Usted no puede acceder a este apartado!");
             return;
         }
+        controlReporte.cargarEstadisticas();
         vtnInicio.mostrarPanel(panelReporte);
     }
 
@@ -212,6 +213,6 @@ public class Controlador {
         controlUsuario = new ControlUsuario(vtnInicio, panelUsuario, buscarUsuario, nuevoUsuario, editarUsuario, usuarioDAO, rolDAO);
         //Reporte
         panelReporte = new ReporteDeVentas();
-        controlReporte = new ControlReporte(vtnInicio, panelReporte, productoDAO, detalleDAO);
+        controlReporte = new ControlReporte(vtnInicio, panelReporte, productoDAO, detalleDAO, ventaDAO);
     }
 }
